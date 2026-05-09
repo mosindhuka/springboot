@@ -13,12 +13,13 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @Autowired
+    final
     PasswordEncoder encoder;
 
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, PasswordEncoder encoder){
         this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
     public List<User> getAllUsers() {
