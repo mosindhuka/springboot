@@ -3,15 +3,19 @@ package com.example.myfirstapp.services;
 import com.example.myfirstapp.models.User;
 import com.example.myfirstapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
+
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -22,6 +26,7 @@ public class UserService {
     }
 
     public User addUser(User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -33,7 +38,7 @@ public class UserService {
         existingUser.setGender(userRequest.getGender());
         existingUser.setDob(userRequest.getDob());
         existingUser.setEmail(userRequest.getEmail());
-        existingUser.setPassword(userRequest.getPassword());
+        existingUser.setPassword(encoder.encode(userRequest.getPassword()));
 
         return userRepository.save(existingUser);
     }
