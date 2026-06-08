@@ -3,6 +3,7 @@ package com.example.myfirstapp.services;
 import com.example.myfirstapp.models.User;
 import com.example.myfirstapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,10 @@ public class UserService {
         this.encoder = encoder;
     }
 
+    @Cacheable("users")
     public List<User> getAllUsers() {
-       return userRepository.findAll();
+        System.out.println("DB CALL for id all users ");
+        return userRepository.findAll();
     }
 
     public User addUser(User user) {
