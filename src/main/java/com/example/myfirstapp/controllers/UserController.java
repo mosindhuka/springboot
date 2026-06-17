@@ -5,6 +5,7 @@ import com.example.myfirstapp.models.User;
 import com.example.myfirstapp.services.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -18,6 +19,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 @Validated
 @RestController
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -33,6 +35,7 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<ResponseDTO<User>> getUsers() {
+        log.info("Fetching users dhsjkdhaskj");
         List<User> users= userService.getAllUsers();
         ResponseDTO<User> response = new ResponseDTO<>("SUCCESS", HttpStatus.CREATED, users);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
