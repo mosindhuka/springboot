@@ -1,5 +1,6 @@
 package com.example.myfirstapp.services;
 
+import com.example.myfirstapp.dtos.UserDetails;
 import com.example.myfirstapp.models.User;
 import com.example.myfirstapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ public class UserService {
     }
 
     @Cacheable("users")
-    public List<User> getAllUsers() {
+    public List<UserDetails> getAllUsers() {
         System.out.println("DB CALL for id all users ");
-        return userRepository.findAll();
+        return userRepository.findAllUsers();
     }
 
     public User addUser(User user) {

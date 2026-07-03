@@ -1,6 +1,7 @@
 package com.example.myfirstapp.controllers;
 
 import com.example.myfirstapp.dtos.ResponseDTO;
+import com.example.myfirstapp.dtos.UserDetails;
 import com.example.myfirstapp.models.User;
 import com.example.myfirstapp.services.UserService;
 import jakarta.validation.Valid;
@@ -34,10 +35,10 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<ResponseDTO<User>> getUsers() {
+    public ResponseEntity<ResponseDTO<UserDetails>> getUsers() {
         log.info("Fetching users dhsjkdhaskj");
-        List<User> users= userService.getAllUsers();
-        ResponseDTO<User> response = new ResponseDTO<>("SUCCESS", HttpStatus.CREATED, users);
+        List<UserDetails> users= userService.getAllUsers();
+        ResponseDTO<UserDetails> response = new ResponseDTO<>("SUCCESS", HttpStatus.CREATED, users);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 

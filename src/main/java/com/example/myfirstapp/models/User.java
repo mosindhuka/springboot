@@ -38,4 +38,13 @@ public class User {
 
     @NotBlank(message = "Password is mandatory")
     private String password;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "id",
+            referencedColumnName = "user_id",
+            insertable = false,
+            updatable = false
+    )
+    private UserInfo userInfo;
 }
