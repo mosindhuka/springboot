@@ -1,6 +1,7 @@
 package com.example.myfirstapp.models;
 
 import com.example.myfirstapp.enums.Gender;
+import com.example.myfirstapp.validators.ValidDob;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -30,6 +31,7 @@ public class User {
     private Gender gender;
 
     @NotNull(message = "Date of birth is mandatory")
+    @ValidDob
     private LocalDate dob;
 
     @NotBlank(message = "Email is mandatory")
