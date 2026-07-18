@@ -10,7 +10,7 @@ import java.util.TimeZone;
 @Component
 public class TestCron {
 
-    @Scheduled(cron="*/5 * * * * *")
+//    @Scheduled(cron="*/5 * * * * *")
     @SchedulerLock(name = "job1",
             lockAtMostFor = "2m")
     public void demoCron() throws InterruptedException {
@@ -18,7 +18,7 @@ public class TestCron {
         System.out.println("i am running "+ new Date());
     }
 
-    @Scheduled(cron="*/5 * * * * *")
+//    @Scheduled(cron="*/5 * * * * *")
     @SchedulerLock(name = "job2",
             lockAtMostFor = "2m")
     public void demoCron2() {

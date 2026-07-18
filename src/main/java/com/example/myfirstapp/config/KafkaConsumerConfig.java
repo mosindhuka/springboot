@@ -1,0 +1,120 @@
+package com.example.myfirstapp.config;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+
+@Configuration
+@EnableKafka
+public class KafkaConsumerConfig {
+
+    @Value("${kafka.cluster1.bootstrap-servers}")
+    private String bootstrapServers1;
+
+    @Value("${kafka.cluster2.bootstrap-servers}")
+    private String bootstrapServers2;
+
+    // Cluster 1
+    @Bean
+    public ConsumerFactory<String, String> cluster1ConsumerFactory() {
+
+        Map<String, Object> props = new HashMap<>();
+
+        props.put(
+                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                bootstrapServers1
+        );
+
+        props.put(
+                ConsumerConfig.GROUP_ID_CONFIG,
+                "orders-service"
+        );
+
+        props.put(
+                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class
+        );
+
+        props.put(
+                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class
+        );
+
+        props.put(
+                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,
+                "earliest"
+        );
+
+        return new DefaultKafkaConsumerFactory<>(props);
+    }
+
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String>
+    cluster1KafkaListenerContainerFactory() {
+
+        var factory =
+                new ConcurrentKafkaListenerContainerFactory<String, String>();
+
+        factory.setConsumerFactory(cluster1ConsumerFactory());
+
+        return factory;
+    }
+
+
+    // Cluster 2
+    @Bean
+    public ConsumerFactory<String, String> cluster2ConsumerFactory() {
+
+        Map<String, Object> props = new HashMap<>();
+
+        props.put(
+                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                bootstrapServers2
+        );
+
+        props.put(
+                ConsumerConfig.GROUP_ID_CONFIG,
+                "payments-service"
+        );
+
+        props.put(
+                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class
+        );
+
+        props.put(
+                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class
+        );
+
+        props.put(
+                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,
+                "earliest"
+        );
+
+        return new DefaultKafkaConsumerFactory<>(props);
+    }
+
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String>
+    cluster2KafkaListenerContainerFactory() {
+
+        var factory =
+                new ConcurrentKafkaListenerContainerFactory<String, String>();
+
+        factory.setConsumerFactory(cluster2ConsumerFactory());
+
+        return factory;
+    }
+}
