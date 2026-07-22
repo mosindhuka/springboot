@@ -2,6 +2,7 @@ package com.example.myfirstapp.services;
 
 import com.example.myfirstapp.dtos.SampleRequest;
 import com.example.myfirstapp.dtos.SampleResponse;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,16 @@ public class ExternalApiService {
         this.restClient = restClient;
     }
 
-    public SampleResponse createUser(SampleRequest request) {
-
+    @Retry(name = "externalApi")
+    public SampleResponse callApi(SampleRequest request) {
+        log.info("external api call");
         SampleResponse sr = restClient.post()
                 .uri("https://api.example.com/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(request)
                 .retrieve()
                 .body(SampleResponse.class);
-        log.info(String.valueOf(sr));
+        //log.info(String.valueOf(sr));
         return sr;
     }
 }

@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class ExternalApiController {
-    private ExternalApiService externalApiService;
+    private final ExternalApiService externalApiService;
 
-    public void UserController(ExternalApiService externalApiService) {
+    public ExternalApiController(ExternalApiService externalApiService) {
         this.externalApiService = externalApiService;
     }
 
     @PostMapping("/external-api")
-    public SampleResponse createUser(@RequestBody SampleRequest request) {
-        return externalApiService.createUser(request);
+    public SampleResponse callExternalApi(@RequestBody SampleRequest request) {
+        log.info("in controller");
+        return externalApiService.callApi(request);
     }
 }
