@@ -22,12 +22,12 @@ public class ExternalApiService {
     public SampleResponse callApi(SampleRequest request) {
         log.info("external api call");
         SampleResponse sr = restClient.post()
-                .uri("https://api.example.com/users")
+                .uri("https://httpbin.org/post")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(request)
                 .retrieve()
                 .body(SampleResponse.class);
-        //log.info(String.valueOf(sr));
+        log.info(String.valueOf(sr));
         return sr;
     }
 }
