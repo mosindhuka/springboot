@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +36,10 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<ResponseDTO<UserDetails>> getUsers() {
+    public ResponseEntity<ResponseDTO<UserDetails>> getUsers(@RequestParam(defaultValue = "0") int page,
+                                                             @RequestParam(defaultValue = "1") int size) {
         log.info("Fetching users dhsjkdhaskj");
-        List<UserDetails> users= userService.getAllUsers();
+        Page<UserDetails> users= userService.getAllUsers(page, size);
         ResponseDTO<UserDetails> response = new ResponseDTO<>("SUCCESS", HttpStatus.CREATED, users);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
