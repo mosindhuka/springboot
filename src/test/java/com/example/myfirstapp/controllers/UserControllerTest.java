@@ -3,7 +3,7 @@ package com.example.myfirstapp.controllers;
 import com.example.myfirstapp.dtos.ResponseDTO;
 import com.example.myfirstapp.dtos.UserDetails;
 import com.example.myfirstapp.enums.Gender;
-import com.example.myfirstapp.models.User;
+import com.example.myfirstapp.models.test.User;
 import com.example.myfirstapp.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

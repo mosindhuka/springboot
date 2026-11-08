@@ -2,8 +2,8 @@
 package com.example.myfirstapp.controllers;
 
 import com.example.myfirstapp.dtos.rag.DocumentResponse;
-import com.example.myfirstapp.models.StoredDocument;
-import com.example.myfirstapp.repositories.DocumentRepository;
+import com.example.myfirstapp.models.pg.StoredDocument;
+import com.example.myfirstapp.repositories.pg.DocumentRepository;
 import com.example.myfirstapp.services.DocumentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

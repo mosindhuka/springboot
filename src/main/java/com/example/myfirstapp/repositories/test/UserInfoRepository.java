@@ -1,6 +1,6 @@
-package com.example.myfirstapp.repositories;
+package com.example.myfirstapp.repositories.test;
 
-import com.example.myfirstapp.models.UserInfo;
+import com.example.myfirstapp.models.test.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

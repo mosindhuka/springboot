@@ -1,4 +1,4 @@
-package com.example.myfirstapp.models;
+package com.example.myfirstapp.models.test;
 
 import jakarta.persistence.*;
 import lombok.Getter;

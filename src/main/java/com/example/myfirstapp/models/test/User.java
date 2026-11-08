@@ -1,4 +1,4 @@
-package com.example.myfirstapp.models;
+package com.example.myfirstapp.models.test;
 
 import com.example.myfirstapp.enums.Gender;
 import com.example.myfirstapp.validators.ValidDob;
@@ -12,7 +12,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Getter @Setter @NoArgsConstructor

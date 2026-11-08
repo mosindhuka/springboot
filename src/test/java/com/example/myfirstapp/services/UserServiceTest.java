@@ -2,8 +2,8 @@ package com.example.myfirstapp.services;
 
 import com.example.myfirstapp.dtos.UserDetails;
 import com.example.myfirstapp.enums.Gender;
-import com.example.myfirstapp.models.User;
-import com.example.myfirstapp.repositories.UserRepository;
+import com.example.myfirstapp.models.test.User;
+import com.example.myfirstapp.repositories.test.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

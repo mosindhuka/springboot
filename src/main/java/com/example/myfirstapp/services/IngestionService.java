@@ -2,9 +2,8 @@
 package com.example.myfirstapp.services;
 
 import com.example.myfirstapp.config.RagProperties;
-import com.example.myfirstapp.models.StoredDocument;
-import com.example.myfirstapp.repositories.DocumentRepository;
-import com.example.myfirstapp.services.FileStorageService;
+import com.example.myfirstapp.models.pg.StoredDocument;
+import com.example.myfirstapp.repositories.pg.DocumentRepository;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.scheduling.annotation.Async;

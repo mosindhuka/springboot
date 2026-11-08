@@ -1,9 +1,8 @@
 package com.example.myfirstapp.services;
 
 import com.example.myfirstapp.dtos.UserDetails;
-import com.example.myfirstapp.models.User;
-import com.example.myfirstapp.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.myfirstapp.models.test.User;
+import com.example.myfirstapp.repositories.test.UserRepository;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {

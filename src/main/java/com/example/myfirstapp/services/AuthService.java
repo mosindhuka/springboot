@@ -1,8 +1,7 @@
 package com.example.myfirstapp.services;
 
-import com.example.myfirstapp.models.User;
-import com.example.myfirstapp.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.myfirstapp.models.test.User;
+import com.example.myfirstapp.repositories.test.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

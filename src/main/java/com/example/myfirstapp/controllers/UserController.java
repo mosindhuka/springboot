@@ -2,22 +2,17 @@ package com.example.myfirstapp.controllers;
 
 import com.example.myfirstapp.dtos.ResponseDTO;
 import com.example.myfirstapp.dtos.UserDetails;
-import com.example.myfirstapp.models.User;
+import com.example.myfirstapp.models.test.User;
 import com.example.myfirstapp.services.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-import static org.springframework.http.HttpStatus.CREATED;
 
 @Validated
 @RestController

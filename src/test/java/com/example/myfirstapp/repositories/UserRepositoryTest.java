@@ -2,8 +2,10 @@ package com.example.myfirstapp.repositories;
 
 import com.example.myfirstapp.dtos.UserDetails;
 import com.example.myfirstapp.enums.Gender;
-import com.example.myfirstapp.models.User;
-import com.example.myfirstapp.models.UserInfo;
+import com.example.myfirstapp.models.test.User;
+import com.example.myfirstapp.models.test.UserInfo;
+import com.example.myfirstapp.repositories.test.UserInfoRepository;
+import com.example.myfirstapp.repositories.test.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;

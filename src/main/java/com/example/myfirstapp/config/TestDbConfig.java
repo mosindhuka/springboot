@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "com.example.myfirstapp.repositories",
+        basePackages = "com.example.myfirstapp.repositories.test",
         entityManagerFactoryRef = "testEntityManagerFactory",
         transactionManagerRef = "testTransactionManager"
 )
@@ -39,7 +39,7 @@ public class TestDbConfig {
 
         return builder
                 .dataSource(testDataSource())
-                .packages("com.example.myfirstapp.models")
+                .packages("com.example.myfirstapp.models.test")
                 .persistenceUnit("test")
                 .build();
     }
