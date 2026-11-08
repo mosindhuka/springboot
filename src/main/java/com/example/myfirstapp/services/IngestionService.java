@@ -40,17 +40,28 @@ public class IngestionService {
 
     @Async("ingestionExecutor")
     public void ingest(UUID documentId) {
+        System.out.println("1. Starting ingestion: " + documentId);
+
         StoredDocument doc = repository.findById(documentId)
                 .orElseThrow();
+
+        System.out.println("2. Document retrieved successfully");
+
 
         try {
             Path file = storage.resolve(doc.getStoredFilename());
             String content = parser.extract(file.toFile());
 
+            System.out.println("3. PDF extracted successfully");
+
+
             List<String> chunks = chunker.split(
                     content,
                     properties.chunkSize(),
                     properties.chunkOverlap());
+
+            System.out.println("4. Chunks generated: " + chunks.size());
+
 
             if (chunks.isEmpty()) {
                 throw new IllegalStateException(
@@ -68,11 +79,19 @@ public class IngestionService {
                 documents.add(new Document(chunks.get(i), metadata));
             }
 
+            System.out.println("5. Saving vectors...");
+
+
             vectorStore.add(documents);
+
+            System.out.println("6. Vectors saved successfully");
+
 
             updateStatus(documentId, "COMPLETED", null, chunks.size());
 
         } catch (Exception e) {
+            e.printStackTrace();
+
             updateStatus(
                     documentId,
                     "FAILED",

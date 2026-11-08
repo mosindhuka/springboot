@@ -68,12 +68,16 @@ public class DocumentService {
 
         try {
             repository.saveAndFlush(doc);
+            System.out.println("DOCUMENT SAVED SUCCESSFULLY: " + id);
+
         } catch (Exception e) {
             storage.delete(path.getFileName().toString());
             throw e;
         }
 
         ingestion.ingest(id);
+        System.out.println("DOCUMENT INGESTION COMPLETED");
+
         return doc;
     }
 

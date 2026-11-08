@@ -27,7 +27,7 @@ public class TestDbConfig {
 
     @Primary
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource.test")
     public DataSource testDataSource() {
         return DataSourceBuilder.create().build();
     }
