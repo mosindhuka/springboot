@@ -13,6 +13,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
+import java.util.Map;
 
 @Configuration
 @EnableJpaRepositories(
@@ -36,6 +37,12 @@ public class Test2DbConfig {
                 .dataSource(test2DataSource())
                 .packages("com.example.myfirstapp.models")
                 .persistenceUnit("test2db")
+                .properties(Map.of(
+                        "hibernate.dialect", "org.hibernate.dialect.MySQLDialect",
+                        // 👇 Add this line to your MySQL config as well
+                        // 👇 Use Hibernate's built-in CamelCaseToUnderscores strategy instead
+                        "hibernate.physical_naming_strategy", "org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy"
+                ))
                 .build();
     }
 

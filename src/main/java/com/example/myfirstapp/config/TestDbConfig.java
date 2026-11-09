@@ -15,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
@@ -25,14 +26,12 @@ import javax.sql.DataSource;
 )
 public class TestDbConfig {
 
-    @Primary
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.test")
     public DataSource testDataSource() {
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
     @Bean
     public LocalContainerEntityManagerFactoryBean testEntityManagerFactory(
             EntityManagerFactoryBuilder builder) {
@@ -41,10 +40,14 @@ public class TestDbConfig {
                 .dataSource(testDataSource())
                 .packages("com.example.myfirstapp.models.test")
                 .persistenceUnit("test")
+                .properties(Map.of(
+                        "hibernate.dialect", "org.hibernate.dialect.MySQLDialect",
+                        // 👇 Use Hibernate's built-in CamelCaseToUnderscores strategy instead
+                        "hibernate.physical_naming_strategy", "org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy"
+                ))
                 .build();
     }
 
-    @Primary
     @Bean
     public PlatformTransactionManager testTransactionManager(
             @Qualifier("testEntityManagerFactory")
