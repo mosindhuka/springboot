@@ -60,4 +60,9 @@ public class UserService {
 
         userRepository.delete(existingUser);
     }
+
+    public UserDetails getUser(Integer id) {
+
+        return userRepository.findUserInfo(id);
+    }
 }
